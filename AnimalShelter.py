@@ -46,9 +46,15 @@ class AnimalBot:
         animal = self.list[animal_index]
         animal.set_vaccination(vaccination)
 
+    def print_vaccinated(self):
+        for i in range(len(self.list)):
+            animal = self.list[i]
+            if animal.vaccination:
+                self.print_animal(i)
 
 bot = AnimalBot()
 
 bot.add_animal("Abc", "10.10.2018", "ok", True)
 bot.add_animal("Cde", "10.02.2018", "ok", True)
-bot.print_all_animals()
+bot.set_animal_vaccination(0,'nie')
+bot.print_vaccinated()
