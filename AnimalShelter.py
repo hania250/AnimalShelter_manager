@@ -52,9 +52,21 @@ class AnimalBot:
             if animal.vaccination:
                 self.print_animal(i)
 
+    def save_animals(self):
+        text_animals = []
+        for i in range(len(self.list)):
+            animal = self.list[i]
+            text = '{};{};{};{}'.format(animal.name, animal.date, animal.condition, animal.vaccination)
+            text_animals.append(text)
+
+        with open('shelter.csv', 'a+') as f:
+            for line in text_animals:
+                f.write(line + '\n')
+
 bot = AnimalBot()
 
 bot.add_animal("Abc", "10.10.2018", "ok", True)
 bot.add_animal("Cde", "10.02.2018", "ok", True)
-bot.set_animal_vaccination(0,'nie')
-bot.print_vaccinated()
+#bot.set_animal_vaccination(0,'nie')
+#bot.print_vaccinated()
+bot.save_animals()
