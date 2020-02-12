@@ -63,10 +63,24 @@ class AnimalBot:
             for line in text_animals:
                 f.write(line + '\n')
 
+    def load_animals(self):
+        with open('shelter.csv', 'r') as f:
+            for line in f:
+                animal_list = line.split(';') # tworzy listę elementow
+
+                if animal_list[3] == 'True\n':
+                    vaccination = True
+                else:
+                    vaccination = False
+                self.add_animal(animal_list[0], animal_list[1], animal_list[2], vaccination)
+
+
 bot = AnimalBot()
 
 bot.add_animal("Abc", "10.10.2018", "ok", True)
 bot.add_animal("Cde", "10.02.2018", "ok", True)
 #bot.set_animal_vaccination(0,'nie')
 #bot.print_vaccinated()
-bot.save_animals()
+#bot.save_animals()
+bot.load_animals()
+bot.print_all_animals()
