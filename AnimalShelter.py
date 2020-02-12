@@ -15,43 +15,40 @@ class Animal:
         else:
             self.vaccination = False
 
-list = []
+class AnimalBot:
+    def __init__(self):
+        self.list = []
+
+    def add_animal(self, name, date, condition, vaccination):
+        a = Animal(name, date, condition, vaccination)
+        self.list.append(a)
+
+    def print_animal(self, index):
+        animal = self.list[index]
+        print('{:2} | {:5} | {:5} | {:5} | {:5}'.format(index, animal.name, animal.date, animal.condition, animal.vaccination))
+
+    def add_animal_from_input(self):
+        name = input('Podaj imie: ')
+        date = input('Data przyjecia: ')
+        condition = input('Podaj stan: ')
+        vaccination = input("czy zwierzak był szczepiony? ")
+        if vaccination == "tak":
+            vaccination = True
+        else:
+            vaccination = False
+        self.add_animal(name, date, condition, vaccination)
+
+    def print_all_animals(self):
+        for index in range(len(self.list)):
+            self.print_animal(index)
+
+    def set_animal_vaccination(self, animal_index, vaccination):
+        animal = self.list[animal_index]
+        animal.set_vaccination(vaccination)
 
 
-def add_animal(name, date, condition, vaccination):
-    animal = Animal(name, date, condition, vaccination)
-    list.append(animal)
+bot = AnimalBot()
 
-
-def print_animal(index, animal):
-    print('{:2} | {:5} | {:5} | {:5} | {:5}'.format(index, animal.name, animal.date, animal.condition, animal.vaccination))
-    print(animal.name, ':', animal.date, ':', animal.condition, ":", animal.vaccination)
-
-
-def add_animal_from_input():
-    name = input('Podaj imie: ')
-    date = input('Data przyjecia: ')
-    condition = input('Podaj stan: ')
-    vaccination = input("czy zwierzak był szczepiony? ")
-    if vaccination == "tak":
-        vaccination = True
-    else:
-        vaccination = False
-    add_animal(name, date, condition, vaccination)
-
-#add_animal_from_input()
-
-add_animal("z", "z", "zz", True)
-
-for index in range(len(list)):
-    print_animal(index, list[index])
-
-index = int(input('Podaj nr indeksu: '))
-animal = list[index]
-animal.set_vaccination(input('Zmiana stanu szczepienia: '))
-print(animal.vaccination)
-
-for index in range(len(list)):
-    print_animal(index, list[index])
-
-# dodanie komentarza
+bot.add_animal("Abc", "10.10.2018", "ok", True)
+bot.add_animal("Cde", "10.02.2018", "ok", True)
+bot.print_all_animals()
