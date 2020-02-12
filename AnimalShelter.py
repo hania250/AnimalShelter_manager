@@ -27,8 +27,6 @@ def print_animal(index, animal):
     print('{:2} | {:5} | {:5} | {:5} | {:5}'.format(index, animal.name, animal.date, animal.condition, animal.vaccination))
     print(animal.name, ':', animal.date, ':', animal.condition, ":", animal.vaccination)
 
-def funkcja(argument):
-    print(argument.name, argument.date, argument.condition)
 
 def add_animal_from_input():
     name = input('Podaj imie: ')
@@ -56,3 +54,4 @@ print(animal.vaccination)
 for index in range(len(list)):
     print_animal(index, list[index])
 
+# dodanie komentarza
