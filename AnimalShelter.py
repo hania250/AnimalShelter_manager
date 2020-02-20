@@ -31,7 +31,7 @@ class AnimalBot:
         name = input('Podaj imie: ')
         date = input('Data przyjecia: ')
         condition = input('Podaj stan: ')
-        vaccination = input("czy zwierzak był szczepiony? ")
+        vaccination = input("Czy zwierzak był szczepiony? ")
         if vaccination == "tak":
             vaccination = True
         else:
@@ -76,11 +76,22 @@ class AnimalBot:
 
 
 bot = AnimalBot()
-
-bot.add_animal("Abc", "10.10.2018", "ok", True)
-bot.add_animal("Cde", "10.02.2018", "ok", True)
-#bot.set_animal_vaccination(0,'nie')
-#bot.print_vaccinated()
-#bot.save_animals()
 bot.load_animals()
-bot.print_all_animals()
+
+while True:
+    command = input('Co chcesz zrobic? ')
+
+    if command == 'dodaj':
+        bot.add_animal_from_input()
+    elif command == 'wszystkie':
+        bot.print_all_animals()
+    elif command == 'zmien':
+        animal_index = int(input('Podaj indeks:'))
+        vaccination = input('czy został zaszczepiony? ')
+        bot.set_animal_vaccination(animal_index, vaccination)
+    elif command == 'pokaz zaszczepione':
+        bot.print_vaccinated()
+    elif command == 'zapisz':
+        bot.save_animals()
+    else:
+        print('Nie wiem co zrobic ')
