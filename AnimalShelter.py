@@ -10,7 +10,7 @@ class Animal:
         print(self.name, self.date, self.condition)
 
     def set_vaccination(self, value):
-        if self.vaccination == 'Tak':
+        if value == 'tak':
             self.vaccination = True
         else:
             self.vaccination = False
@@ -59,7 +59,7 @@ class AnimalBot:
             text = '{};{};{};{}'.format(animal.name, animal.date, animal.condition, animal.vaccination)
             text_animals.append(text)
 
-        with open('shelter.csv', 'a+') as f:
+        with open('shelter.csv', 'w') as f:
             for line in text_animals:
                 f.write(line + '\n')
 
@@ -74,7 +74,6 @@ class AnimalBot:
                     vaccination = False
                 self.add_animal(animal_list[0], animal_list[1], animal_list[2], vaccination)
 
-
 bot = AnimalBot()
 bot.load_animals()
 
@@ -86,9 +85,9 @@ while True:
     elif command == 'wszystkie':
         bot.print_all_animals()
     elif command == 'zmien':
-        animal_index = int(input('Podaj indeks:'))
-        vaccination = input('czy został zaszczepiony? ')
-        bot.set_animal_vaccination(animal_index, vaccination)
+        index = int(input('Podaj indeks:'))
+        vaccination = input('czy byl szczepiony? ')
+        bot.set_animal_vaccination(index, vaccination)
     elif command == 'pokaz zaszczepione':
         bot.print_vaccinated()
     elif command == 'zapisz':
